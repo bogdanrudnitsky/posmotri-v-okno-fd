@@ -107,7 +107,7 @@ ol {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  margin-bottom: 5px;
+  margin-bottom: 0;
 }
 
 .search-form__label {
@@ -164,7 +164,7 @@ ol {
 .search-form__checkbox-list {
   display: flex;
   gap: 15px;
-  margin-top: 5px;
+  margin-top: 0;
 }
 
 .search-form__pseudo-checkbox {
@@ -299,11 +299,14 @@ ol {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   font-weight: 400;
-  line-clamp: 4;
-  box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+
 
 .content__card-link {
   text-decoration: none;
