@@ -1,26 +1,62 @@
-body {
-  font-family: 'Fira Sans Condensed', sans-serif;
-  background-color: #1B1919;
-  color: #FFFFFF;
-  width: 1200px;
-  margin: 0 auto;
+*::before, *::after {
+  box-sizing: border-box;
 }
 
-.wrapper {
-  width: 1140px; /* Жестко фиксируем 1200px */
-  height: 534px;
-  margin: 133px 30px;
+html {
+  block-size: 100%;
+}
+
+.page {
+  inline-size: 1200px;
+  block-size: 100%;
+  color: #fff;
+  font-family: 'Fira Sans Condensed', sans-serif;
+  font-size: 18px;
+  background-color: #1b1919;
+  margin: 0 auto; /* Центрируем страницу по горизонтали */
+  display: flex;
+  justify-content: center; /* Центрируем контент по горизонтали */
+  align-items: center; /* Центрируем контент по вертикали */
+}
+
+h1,
+h2,
+h3,
+h4,
+p,
+ul,
+ol,
+li,
+blockquote,
+fieldset {
+  margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+/* Кастомный скроллбар */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgb(217 217 217 / 10%);
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #D9D9D9;
 }
 
 .content {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-end; /* ВАЖНО — это прижмет блоки к низу */
-  height: 100%;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 30px;
   width: 100%;
-  position: relative;
 }
 
 /* Левый блок (видео + форма) */
@@ -31,12 +67,14 @@ body {
 
 .result__video-container {
   width: 711px;
+  height: 386px;
   margin-bottom: 20px;
+  position: relative;
 }
 
 .result__video {
-  width: 711px;
-  height: 386px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
@@ -48,11 +86,7 @@ body {
 /* Правый блок */
 .content__details {
   width: 399px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
   flex-shrink: 0;
-
 }
 
 /* Остальные стили */
@@ -86,6 +120,16 @@ body {
   gap: 5px;
   cursor: pointer;
   font-size: 18px;
+  position: relative;
+}
+
+.search-form__checkbox-list .search-form__label:hover {
+  text-decoration: underline;
+}
+
+.search-form__checkbox-list .search-form__label:focus-within {
+  outline: 1px solid white;
+  outline-offset: 1px;
 }
 
 .search-form__textfield {
@@ -101,18 +145,25 @@ body {
   appearance: none;
 }
 
-.search-form__textfield:focus {
-  outline: none;
+.search-form__textfield:active {
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
-.search-form__checkbox {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
+.search-form__textfield:focus-visible {
+  outline: 1px solid #FFFFFF;
+  outline-offset: 1px;
 }
 
+.visually-hidden {
+    position: absolute;
+    inline-size: 1px;
+    block-size: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
 
 .search-form__checkbox-list {
   display: flex;
@@ -138,7 +189,11 @@ body {
 }
 
 .search-form__submit-button {
-  padding: 6px 73px;
+  padding: 6px 73px; /* Уникальный padding */
+  align-self: flex-end;
+}
+
+.button {
   font-family: 'Fira Sans Condensed', sans-serif;
   font-size: 18px;
   font-weight: 700;
@@ -146,27 +201,23 @@ body {
   color: white;
   border: 1px solid white;
   cursor: pointer;
-  align-self: flex-end;
+  text-align: center;
+  min-width: 194px;
+  padding: 6px 0;
 }
 
-.search-form__submit-button:hover {
-  color:
+.button:hover {
   text-decoration: underline;
 }
 
+.button:active {
+  background-color: #545050;
+}
 
-/* Общие стили для всех кнопок */
-.button {
-  padding: 6px 73px;
-  font-family: 'Fira Sans Condensed', sans-serif;
-  font-size: 18px;
-  font-weight: 700;
-  background-color: transparent; /* Прозрачный фон */
-  color: white;
-  border: 1px solid white; /* Белая рамка */
-  cursor: pointer;
-  text-align: center;
-  min-width: 194px;
+.button:focus-visible {
+  outline: 1px solid #FFFFFF;
+  outline-offset: 1px;
+  text-decoration: none;
 }
 
 .title {
@@ -186,6 +237,8 @@ body {
   height: 298px;
   overflow-y: auto;
   overflow-x: hidden;
+  position: relative;
+  padding: 3px;
 }
 
 .content__list {
@@ -197,22 +250,38 @@ body {
 }
 
 .content__list-item {
-  padding: 10px;
+  width:390px;
+  padding-bottom: 30px;
+}
+
+.content__video-card:hover {
+  text-decoration: underline;
+}
+
+.content__video-card:active {
+  background-color: #545050;
+}
+
+.content__video-card:focus-visible {
+  outline: 1px solid #FFFFFF;
+  outline-offset: 1px;
+  text-decoration: none;
 }
 
 .content__video-card {
   display: flex;
   align-items: flex-start;
   color: #FFFFFF;
-  justify-content: flex-start;
+  justify-content: space-between;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .content__video-card-thumbnail {
-  order: 1; /* картинка — второй элемент */
   width: 194px;
   height: 103px;
   object-fit: cover;
-  flex-shrink: 0; /* не сжимать */
+  flex-shrink: 0;
 }
 
 .content__video-card-description-container {
@@ -227,10 +296,19 @@ body {
 
 
 .content__video-card-title {
-  font-family: Oswald;
+  width: 196px;
+  line-height: 100%;
+  font-family: Oswald, 'Arial Narrow', sans-serif;
+  text-transform: uppercase;
   font-size: 30px;
   font-weight: 700;
   margin: 0 0 4px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  /* Новые свойства для корректного отображения букв */
+  padding-bottom: 2px;
+  display: block
 }
 
 .content__video-card-description {
@@ -246,6 +324,5 @@ body {
 }
 
 .more-button {
-  margin-top: 20px;
   width: 100%;
 }
